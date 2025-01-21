@@ -1,7 +1,8 @@
-import 'package:bookly_app/core/utils/app_assets.dart';
 import 'package:bookly_app/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../res/assets_res.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -35,7 +36,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(AppAssets.logo),
+        Image.asset(AssetsRes.LOGO),
         AnimatedBuilder(
           animation: slidingAnimation,
           builder: (context, _) {
