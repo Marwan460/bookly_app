@@ -22,7 +22,7 @@ class HomeViewBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Text(
               "Best Seller",
-              style: Styles.titleMedium,
+              style: Styles.textStyle18,
             ),
           ),
           SizedBox(height: 15),
