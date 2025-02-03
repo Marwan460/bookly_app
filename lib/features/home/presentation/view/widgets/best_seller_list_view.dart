@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'book_list_view_item.dart';
 
-class BestSellerListView extends StatelessWidget {
-  const BestSellerListView({
+class NewestListView extends StatelessWidget {
+  const NewestListView({
     super.key,
   });
 
