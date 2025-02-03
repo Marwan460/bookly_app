@@ -2,11 +2,14 @@ import 'package:bookly_app/features/home/presentation/view/widgets/books_action.
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/book_model/book_model.dart';
 import 'book_rating.dart';
 import 'custom_book_image.dart';
 
 class BooksDetailsSection extends StatelessWidget {
-  const BooksDetailsSection({super.key});
+  final BookModel bookModel;
+
+  const BooksDetailsSection({super.key, required this.bookModel});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +18,16 @@ class BooksDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.3),
-          child: const CustomBookImage(imageUrl: 'http://books.google.com/books/content?id=SSrHDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',),
+          child: CustomBookImage(
+            imageUrl: bookModel.volumeInfo.imageLinks.thumbnail,
+          ),
         ),
         const SizedBox(
           height: 43,
         ),
-        const Text(
-          "The Jungle Book",
+        Text(
+          textAlign: TextAlign.center,
+          bookModel.volumeInfo.title!,
           style: Styles.textStyle30,
         ),
         const SizedBox(
@@ -30,7 +36,10 @@ class BooksDetailsSection extends StatelessWidget {
         Opacity(
           opacity: 0.7,
           child: Text(
-            "Rudyard Kipling",
+            (bookModel.volumeInfo.authors != null &&
+                    bookModel.volumeInfo.authors!.isNotEmpty)
+                ? bookModel.volumeInfo.authors![0]
+                : "UnKnown",
             style: Styles.textStyle18.copyWith(
                 fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
           ),
@@ -38,8 +47,10 @@ class BooksDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 18,
         ),
-        const BookRating(
-          mainAxisAlignment: MainAxisAlignment.center, rating: 1, numOfReviews: 1,
+        BookRating(
+          mainAxisAlignment: MainAxisAlignment.center,
+            rating: bookModel.volumeInfo.averageRating ?? 0,
+            numOfReviews: bookModel.volumeInfo.ratingsCount ?? 0
         ),
         const SizedBox(
           height: 37,
